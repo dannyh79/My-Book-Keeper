@@ -1,0 +1,48 @@
+nav {
+  .user-info {
+    a {
+      margin-left: 8px;
+    }
+  }
+}
+
+.main-section {
+  margin-top: 1em;
+}
+
+.project-name {
+  font-weight: 200;
+  margin-left: 10px;
+}
+
+.editor-area {
+  margin-right: 0.7em;
+  padding: 1.4em;
+}
+
+.result-area {
+  background-color: #FEFEFE;
+  padding: 1em 1.4em;
+
+  .total_amount {
+    font-weight: 200;
+  }
+}
+
+.list-item {
+  font-weight: 300;
+  // border-bottom: solid lightgray 1px;
+
+  &:hover {
+    background-color: #FAFAFA;
+  }
+
+  .type {
+  }
+
+  .item {
+  }
+
+  .amount {
+  }
+}

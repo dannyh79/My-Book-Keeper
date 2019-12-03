@@ -1,1 +1,82 @@
-<h1>Hello, Rails :)</h1>
+<section class="main-section" id="app">
+  <div class="columns">
+    <div class="column is-5 editor-area box">
+      <form method="post">
+        <div class="field">
+          <div class="columns">
+            <div class="column is-3">
+              <div class="control">
+                <div class="select is-rounded">
+                  <select v-model="expense_type">
+                    <option value="-">支出</option>
+                    <option value="+">收入</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="column is-6">
+              <div class="control">
+                <input class="input" 
+                       type="text" 
+                       placeholder="項目"
+                       v-model="title"
+                       required>
+              </div>
+            </div>
+            <div class="column is-3">
+              <div class="control">
+                <input class="input" 
+                       type="number" 
+                       placeholder="金額"
+                       v-model="amount"
+                       required>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <div class="control">
+            <label for="description" class="label">備註說明：</label>
+            <textarea id="description" class="textarea" v-model="description"></textarea>
+            <p class="help">提醒您：賺錢有術，花錢有道！</p>
+          </div>
+        </div>
+        <div class="field">
+          <div class="control">
+            <button type="submit" class="button is-primary is-fullwidth" @click="addItem">
+              新增
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="column is-7 result-area box">
+      <div class="total_amount has-text-grey is-size-2 has-text-left">收支：{{ total }}</div>
+
+      <div class="list-item is-size-5" v-for="item in items">
+        <div class="columns">
+          <div class="column is-1 type has-text-centered">
+            <i class="far fa-minus-square has-text-danger" v-if="item.expense_type === '-'"></i>
+            <i class="far fa-plus-square has-text-success" v-if="item.expense_type === '+'"></i>
+          </div>
+
+          <div class="column is-7 item">{{ item.title }}</div>
+
+          <div class="column is-2 amount">{{ item.amount }}</div>
+
+          <div class="column is-2 icon">
+            <a href="#" class="has-text-primary">
+              <i class="far fa-edit"></i>
+            </a>
+            <a href="#" class="has-text-primary">
+              <i class="far fa-trash-alt"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%= javascript_pack_tag 'src/app.js' %>
