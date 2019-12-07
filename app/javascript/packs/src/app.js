@@ -1,4 +1,5 @@
 import Vue from 'vue/dist/vue.esm'
+import axios from 'axios'
 
 new Vue({
   el: "#app", 
@@ -7,19 +8,21 @@ new Vue({
     title: '', 
     amount: '', 
     description: '', 
-    items: [
-      {id: 1, expense_type: '-', title: '買 iphone', amount: 20000, description: 'Hello'}, 
-      {id: 2, expense_type: '+', title: '買書', amount: 1000, description: 'World'}, 
-    ]
-  }, 
+    items: []
+  },
+  mounted() {
+    axios
+      .get('http://localhost:3000/api/v1/book_keeping.json')
+      .then((response) => this.items = response['data'])
+  },
   computed: {
     total() {
-      return this.items.reduce(function(sum, item){
+      return this.items.reduce((sum, item) => {
         if (item.expense_type === '+') {
           return sum + item.amount
-        } else {
-          return sum - item.amount
         }
+
+        return sum - item.amount
       }, 0)
     }
   },
@@ -30,7 +33,7 @@ new Vue({
       this.amount = ''
       this.description = ''
     }, 
-    
+    // WIP
     addItem(event) {
       event.preventDefault()
       
