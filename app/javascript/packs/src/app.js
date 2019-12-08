@@ -2,12 +2,12 @@ import Vue from 'vue/dist/vue.esm'
 import axios from 'axios'
 
 new Vue({
-  el: "#app", 
+  el: "#app",
   data: {
     expense_type: '-',
-    title: '', 
-    amount: '', 
-    description: '', 
+    title: '',
+    amount: '',
+    description: '',
     items: []
   },
   mounted() {
@@ -32,18 +32,17 @@ new Vue({
       this.title = ''
       this.amount = ''
       this.description = ''
-    }, 
-    // WIP
-    addItem(event) {
-      event.preventDefault()
-      
+    },
+    addItem() {
       let item = {
-        id: 3, 
-        expense_type: this.expense_type, 
-        title: this.title, 
-        amount: this.amount, 
+        expense_type: this.expense_type,
+        title: this.title,
+        amount: this.amount,
         description: this.description
       }
+
+      axios
+        .post('http://localhost:3000/api/v1/book_keeping', item)
       this.items.unshift(item)
       this.clear()
     }
