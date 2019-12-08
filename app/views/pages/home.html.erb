@@ -16,8 +16,8 @@
             </div>
             <div class="column is-6">
               <div class="control">
-                <input class="input" 
-                       type="text" 
+                <input class="input"
+                       type="text"
                        placeholder="項目"
                        v-model="title"
                        required>
@@ -25,8 +25,8 @@
             </div>
             <div class="column is-3">
               <div class="control">
-                <input class="input" 
-                       type="number" 
+                <input class="input"
+                       type="number"
                        placeholder="金額"
                        v-model="amount"
                        required>
@@ -43,7 +43,7 @@
         </div>
         <div class="field">
           <div class="control">
-            <button type="submit" class="button is-primary is-fullwidth" @click="addItem">
+            <button type="submit" class="button is-primary is-fullwidth" @click.prevent="addItem">
               新增
             </button>
           </div>
@@ -54,7 +54,7 @@
     <div class="column is-7 result-area box">
       <div class="total_amount has-text-grey is-size-2 has-text-left">收支：{{ total }}</div>
 
-      <div class="list-item is-size-5" v-for="item in items">
+      <div class="list-item is-size-5" v-for="item in items" :key="item.id">
         <div class="columns">
           <div class="column is-1 type has-text-centered">
             <i class="far fa-minus-square has-text-danger" v-if="item.expense_type === '-'"></i>
@@ -69,7 +69,7 @@
             <a href="#" class="has-text-primary">
               <i class="far fa-edit"></i>
             </a>
-            <a href="#" class="has-text-primary">
+            <a href="#" class="has-text-primary" @click.prevent="deleteItem(item)">
               <i class="far fa-trash-alt"></i>
             </a>
           </div>

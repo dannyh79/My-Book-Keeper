@@ -21,6 +21,12 @@ class Api::V1::BookKeepingController < ApplicationController
   end
 
   def destroy
+    if @book_keeping.destroy
+      head :ok
+    else
+      render json: { message: 'Erred while deleting item' },
+             status: :bad_request
+    end
   end
 
   private

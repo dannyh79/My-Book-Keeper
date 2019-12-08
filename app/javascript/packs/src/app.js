@@ -45,6 +45,12 @@ new Vue({
         .post('http://localhost:3000/api/v1/book_keeping', item)
       this.items.unshift(item)
       this.clear()
+    },
+    deleteItem(item) {
+      axios
+        .delete(`http://localhost:3000/api/v1/book_keeping/${item.id}`)
+
+      this.items = this.items.filter((i) => i.id !== item.id)
     }
   }
 })
