@@ -46,6 +46,12 @@ new Vue({
       this.items.unshift(item)
       this.clear()
     },
+    showItem(item) {
+      this.expense_type = item.expense_type
+      this.title = item.title
+      this.amount = item.amount
+      this.description = item.description
+    },
     deleteItem(item) {
       axios
         .delete(`http://localhost:3000/api/v1/book_keeping/${item.id}`)

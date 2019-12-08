@@ -66,7 +66,7 @@
           <div class="column is-2 amount">{{ item.amount }}</div>
 
           <div class="column is-2 icon">
-            <a href="#" class="has-text-primary">
+            <a href="#" class="has-text-primary" @click.prevent="showItem(item)">
               <i class="far fa-edit"></i>
             </a>
             <a href="#" class="has-text-primary" @click.prevent="deleteItem(item)">
