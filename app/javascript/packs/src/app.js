@@ -4,6 +4,7 @@ import axios from 'axios'
 new Vue({
   el: "#app",
   data: {
+    id: 0,
     expense_type: '-',
     title: '',
     amount: '',
@@ -28,25 +29,38 @@ new Vue({
   },
   methods: {
     clear() {
+      this.id = 0
       this.expense_type = '-'
       this.title = ''
       this.amount = ''
       this.description = ''
     },
-    addItem() {
-      let item = {
-        expense_type: this.expense_type,
-        title: this.title,
-        amount: this.amount,
-        description: this.description
+    saveItem(item) {
+      if (this.id === 0) {
+        let newItem = {
+          expense_type: this.expense_type,
+          title: this.title,
+          amount: this.amount,
+          description: this.description
+        }
+        axios
+          .post('http://localhost:3000/api/v1/book_keeping', newItem)
+        this.items.unshift(newItem)
+      } else {
+        let editedItem = {
+          expense_type: this.expense_type,
+          title: this.title,
+          amount: this.amount,
+          description: this.description
+        }
+        axios
+          .put(`http://localhost:3000/api/v1/book_keeping/${this.id}`, editedItem)
+        this.items = this.items.map((i) => i.id === this.id ? editedItem : i )
       }
-
-      axios
-        .post('http://localhost:3000/api/v1/book_keeping', item)
-      this.items.unshift(item)
       this.clear()
     },
     showItem(item) {
+      this.id = item.id
       this.expense_type = item.expense_type
       this.title = item.title
       this.amount = item.amount

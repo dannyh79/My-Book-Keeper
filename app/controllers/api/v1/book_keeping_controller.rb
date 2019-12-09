@@ -18,6 +18,12 @@ class Api::V1::BookKeepingController < ApplicationController
   end
 
   def update
+    if @book_keeping.update(book_keeping_params)
+      head :ok
+    else
+      render json: { message: @book_keeping.errors.full_messages.join('\n') },
+             status: :bad_request
+    end
   end
 
   def destroy
