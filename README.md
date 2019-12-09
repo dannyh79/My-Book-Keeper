@@ -1,24 +1,22 @@
-# README
+# My Book Keeper
+A simple book keeper utilizing Rails 6 & Vue. Data is kept in persistent storage.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## To Install
+1. Run `$ bundle install`
+2. Run `$ rails db:migrate`
 
-Things you may want to cover:
+## To Start the Server
+- Option 1.
+  - Run `$ foreman start`
 
-* Ruby version
+- Option 2.
+  1. Run `$ rails s`
+  2. Run `$ bin/webpack-dev-server`
 
-* System dependencies
+## To Access the Page
+Type `localhost:3000` in your browser's URL bar
 
-* Configuration
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Known Bug
+1. App can not delete item in back-end if the item is just craeted
+2. No escape button when item is being edited
