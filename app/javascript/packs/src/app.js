@@ -83,10 +83,35 @@ new Vue({
       this.description = item.description
     },
     deleteItem(item) {
-      axios
-        .delete(`http://localhost:3000/api/v1/book_keeping/${item.id}`)
-
-      this.items = this.items.filter((i) => i.id !== item.id)
+      const confirmation = confirm(
+        `
+          You are about to delete the following item:
+          - Type: ${WordedExpenseType}
+          - Title: ${this.title}
+          - Amount: ${this.amount}
+          - Description: ${this.description}
+        `
+      )
+      if (confirmation) {
+        axios
+          .delete(`http://localhost:3000/api/v1/book_keeping/${item.id}`)
+          .then((response) => {
+            if (response.status === 200) {
+              this.items = this.items.filter((i) => i.id !== item.id)
+              window.alert(`Item (${item.title}) successfully deleted!`)
+            } else {
+              throw 'failed to deleted item'
+            }
+          })
+          .catch((error) => {
+            window.alert(
+              `
+                Something went wrong (${error}).
+                Please re-try.
+              `
+            )
+          })
+      }
     }
   }
 })
