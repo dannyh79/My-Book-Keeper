@@ -18,5 +18,4 @@ Type `localhost:3000` in your browser's URL bar
 
 
 ## Known Bug
-1. App can not delete item in back-end if the item is just craeted
-2. No escape button when item is being edited
+1. No escape button when item is being edited

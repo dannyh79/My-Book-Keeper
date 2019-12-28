@@ -10,7 +10,7 @@ class Api::V1::BookKeepingController < ApplicationController
     @book_keeping = BookKeeping.new(book_keeping_params)
 
     if @book_keeping.save
-      head :ok
+      render json: BookKeeping.all.order('updated_at DESC')
     else
       render json: { message: @book_keeping.errors.full_messages.join('\n') },
              status: :bad_request
