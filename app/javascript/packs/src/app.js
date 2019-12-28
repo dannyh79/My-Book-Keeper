@@ -45,7 +45,23 @@ new Vue({
         }
         axios
           .post('http://localhost:3000/api/v1/book_keeping', newItem)
-        this.items.unshift(newItem)
+          .then((res) => {
+            if (res.status === 200) {
+              axios
+                .get('http://localhost:3000/api/v1/book_keeping.json')
+                .then((response) => {
+                  if (response.status === 200) {
+                    this.items = response['data']
+                    window.alert(`Item (${newItem.title}) successfully added!`)
+                  } else {
+                    throw 'failed to add item'
+                  }
+                })
+                .catch((error) => {
+                  window.alert(`Something went wrong (${error}).\nPlease re-try.`)
+                })
+            }
+          })
       } else {
         let editedItem = {
           expense_type: this.expense_type,
