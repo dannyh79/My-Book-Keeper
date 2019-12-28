@@ -58,7 +58,12 @@ new Vue({
                   }
                 })
                 .catch((error) => {
-                  window.alert(`Something went wrong (${error}).\nPlease re-try.`)
+                  window.alert(
+                    `
+                      Something went wrong (${error}).
+                      Please re-try.
+                    `
+                  )
                 })
             }
           })
