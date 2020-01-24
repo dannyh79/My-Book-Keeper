@@ -1,6 +1,11 @@
 import Vue from 'vue/dist/vue.esm'
 import axios from 'axios'
 
+const expenseType = {
+  '-': 'expense',
+  '+': 'income'
+}
+
 new Vue({
   el: "#app",
   data: {
@@ -74,15 +79,10 @@ new Vue({
           amount: this.amount,
           description: this.description
         }
-        const expenseType = {
-          '-': 'expense',
-          '+': 'income'
-        }
-        const WordedExpenseType = expenseType[this.expense_type]
         const confirmation = confirm(
           `
             You are about to edit the item to the following:
-            - Type: ${WordedExpenseType}
+            - Type: ${expenseType[this.expense_type]}
             - Title: ${this.title}
             - Amount: ${this.amount}
             - Description: ${this.description}
@@ -122,10 +122,10 @@ new Vue({
       const confirmation = confirm(
         `
           You are about to delete the following item:
-          - Type: ${WordedExpenseType}
-          - Title: ${this.title}
-          - Amount: ${this.amount}
-          - Description: ${this.description}
+          - Type: ${expenseType[item.expense_type]}
+          - Title: ${item.title}
+          - Amount: ${item.amount}
+          - Description: ${item.description}
         `
       )
       if (confirmation) {
